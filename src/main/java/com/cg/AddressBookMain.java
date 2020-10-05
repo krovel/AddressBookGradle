@@ -7,26 +7,39 @@ import java.util.*;
 
 public class AddressBookMain {
 	public static void main(String[] args) {
-		
+        AddressBook addressBook = new AddressBook();
 		AddressBookList addressBookList = new AddressBookList();
 		Scanner in = new Scanner(System.in);
 		boolean b = false;
 		System.out.println("Welcome");
 		System.out.println("1. Open existing addressbook");
 		System.out.println("2. Open new addressbook");
-		System.out.println("3. Exit");
+		System.out.println("3. Search persons in a city");
+		System.out.println("4. Search persons in a state");
+		System.out.println("5. Exit");
 		int option = in.nextInt();
 		while(option != 3) {
 			if(option == 1)
 				addressBookList.openAddressBook();
 			else if(option == 2)
 				addressBookList.newAddressBook();
-			else if(option == 3)
+			else if(option == 3) {
+			System.out.println("Enter City");
+			String city = in.next();
+			System.out.println(addressBook.searchPersonsByCity(city));
+		}
+		else if(option == 4) {
+			System.out.println("Enter State");
+			String state = in.next();
+			System.out.println(addressBook.searchPersonsByState(state));
+		}
+		else if (option == 5)
 				break;
 			else{
 	      		System.out.println("Error! Enter correct choice-");    
 	      	}
-	      	System.out.println("Enter choice again (1. Open existing addressbook, 2. Open new addressbook, 3. Exit)-");
+	      	System.out.println("Enter choice again (1. Open existing addressbook, 2. Open new addressbook, 3. Search persons in a city,"
+	      			+ "4. Search persons in a state, 5. Exit)-");
 	      	option = in.nextInt();
 	      }
 		System.out.println("Thank You !");

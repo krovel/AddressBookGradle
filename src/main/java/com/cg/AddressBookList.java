@@ -2,9 +2,12 @@ package com.cg;
 
 import java.util.*;
 
+import java.util.stream.Collectors;
+
 public class AddressBookList {
 	Scanner in = new Scanner(System.in);
-	 Map<String, AddressBook> addressBookMap = new TreeMap<>();
+	Map<String, AddressBook> addressBookMap = new TreeMap<>();
+	 ArrayList<AddressBook> addressList = new ArrayList<>();
 	 
 	 public AddressBookList() {
 			addressBookMap = new TreeMap<>();
@@ -46,15 +49,24 @@ public class AddressBookList {
 		 System.out.println("Address Book does not exist."); 
 	  }
   }
-public void newAddressBook() {
-	AddressBook addressBook = new AddressBook();
-	System.out.println("Enter the name of address book-");
-	String bookName = in.next();
-	boolean keyPresent = addressBookMap.containsKey(bookName);
-	if(keyPresent)
-		System.out.println("Already Present.");
-	else
-		addressBookMap.put(bookName, addressBook);
-	
-	}
+  public void newAddressBook() {
+	  AddressBook addressBook = new AddressBook();
+	  System.out.println("Enter the name of address book-");
+	  String bookName = in.next();
+	  boolean keyPresent = addressBookMap.containsKey(bookName);
+	  if(keyPresent)
+		  System.out.println("Already Present.");
+	  else
+		  addressBookMap.put(bookName, addressBook);
+		}
+  public void showDetails() {
+	  if(addressBookMap.size() == 0)
+		  System.out.println("No Address Book is present");
+	  else {
+		  for (int i = 0; i < addressList.size(); i++) {
+			  AddressBook addressBook = addressList.get(i);
+			  addressBook.display();
+		  }
+	  }
+  }
 }
