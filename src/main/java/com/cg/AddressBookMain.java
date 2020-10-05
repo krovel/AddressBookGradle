@@ -14,21 +14,20 @@ public class AddressBookMain {
         System.out.println("1. Add contact");
         System.out.println("2. Edit contact");
         System.out.println("3. View addressbook details");
-        System.out.println("4. Exit");
+        System.out.println("4. Delete contact");
+        System.out.println("5. Exit");
         int option = in.nextInt();
-        while(option!= 4) {
+        while(option!= 5) {
         	if(option == 1)
         		addressbook.addNewContact();
         	else if(option == 2) {
-        		System.out.println("Enter first name- ");
-        		String firstName = in.next();
-        		System.out.println("Enter last name- ");
-        		String lastName = in.next();
-        		addressbook.editContact(firstName, lastName);
+        		addressbook.editContact();
         	}
         	else if (option == 3)
         		addressbook.display();
         	else if(option == 4)
+        		addressbook.deleteContact();
+        	else if(option == 5)
         		break;
         	else{
         		System.out.println("Error! Enter correct choice-");    

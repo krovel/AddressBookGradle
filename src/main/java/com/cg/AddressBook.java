@@ -8,6 +8,18 @@ public class AddressBook {
 	Map<String, Contact> contactMap = new HashMap<>();
 	static Map<String, AddressBook> addressBookList = new TreeMap<>();
 	
+	public AddressBook() {
+		contactList = new ArrayList<>();
+		contactMap = new HashMap<>();
+	}
+	public List<Contact> getContactList() {
+		return contactList;
+	}
+
+	public Map<String, Contact> getContactMap() {
+		return contactMap;
+	}
+	
 	public void addNewContact() {
 		boolean b = false;
 		Contact contact = new Contact();
@@ -60,7 +72,11 @@ public class AddressBook {
 		}
 	}
 	
-	public void editContact(String firstName, String lastName) {
+	public void editContact() {
+		System.out.println("Enter First Name :");
+    	String firstName = in.next();
+    	System.out.println("Enter Last Name :");
+    	String lastName = in.next();
 		String name = firstName+" "+lastName;
 		boolean b = false;
 		Boolean keyPresent = contactMap.containsKey(name);
@@ -118,5 +134,33 @@ public class AddressBook {
 				System.out.println("\nContact :" + (i + 1));
 				System.out.println(contact);
 			}
+		}
+	
+	public void showDetail() {
+		if(contactMap.size() == 0)
+			System.out.println("No contacts to show");
+		else {
+			Set set = contactMap.entrySet();
+			Iterator iterator = set.iterator();
+			while(iterator.hasNext()) {
+				Map.Entry entry = (Map.Entry)iterator.next();
+				System.out.println(entry.getValue());
+			}
+		}
+	}
+	public void deleteContact() {
+		System.out.println("Enter First Name :");
+    	String firstName = in.next();
+    	System.out.println("Enter Last Name :");
+    	String lastName = in.next();
+		String name = firstName+" "+lastName;
+		Boolean keyPresent = contactMap.containsKey(name);
+		if (keyPresent) {
+			Contact c = contactMap.get(name);
+			contactList.remove(c);
+			contactMap.remove(name);
+		} else {
+			System.out.println("Error! Name already present.");
+		}
 	}
 }
