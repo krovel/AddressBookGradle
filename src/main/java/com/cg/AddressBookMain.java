@@ -16,7 +16,9 @@ public class AddressBookMain {
 		System.out.println("2. Open new addressbook");
 		System.out.println("3. Search persons in a city");
 		System.out.println("4. Search persons in a state");
-		System.out.println("5. Exit");
+		System.out.println("5. Count persons in a city");
+		System.out.println("6. Count persons in a state");
+		System.out.println("7. Exit");
 		int option = in.nextInt();
 		while(option != 3) {
 			if(option == 1)
@@ -33,13 +35,23 @@ public class AddressBookMain {
 			String state = in.next();
 			System.out.println(addressBook.searchPersonsByState(state));
 		}
-		else if (option == 5)
+		else if (option == 5) {
+			System.out.println("Enter City");
+			String city = in.next();
+			System.out.println(addressBook.countPersonsByCity(city));
+		}
+		else if(option == 6) {
+			System.out.println("Enter State");
+			String state = in.next();
+			System.out.println(addressBook.countPersonsByState(state));
+		}
+		else if (option == 7)
 				break;
 			else{
 	      		System.out.println("Error! Enter correct choice-");    
 	      	}
 	      	System.out.println("Enter choice again (1. Open existing addressbook, 2. Open new addressbook, 3. Search persons in a city,"
-	      			+ "4. Search persons in a state, 5. Exit)-");
+	      			+ "4. Search persons in a state, 5. Count persons in a city, 6. Count persons in a state, 7. Exit)-");
 	      	option = in.nextInt();
 	      }
 		System.out.println("Thank You !");
