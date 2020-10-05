@@ -3,9 +3,54 @@
  */
 package com.cg;
 
+import java.util.*;
+
 public class AddressBookMain {
 	public static void main(String[] args) {
-		System.out.println("Welcome");
-		Contact contact=new Contact();
-    }
+		System.out.println("Welcome");	
+		
+		Scanner in = new Scanner(System.in);
+		boolean b = false;
+		Contact contact = new Contact();
+		System.out.print("Enter first name- ");
+		while(!b) {
+		b = contact.setFirstName(in.next());
+		}
+		b = false;
+		System.out.print("Enter last name- ");
+		while(!b) {
+		b = contact.setLastName(in.next());
+		}
+		b = false;
+		System.out.print("Enter address- ");
+		while(!b) {
+		b = contact.setAddress(in.next());
+		}
+		b = false;
+		System.out.print("Enter city- ");
+		while(!b) {
+		b = contact.setCity(in.next());
+		}
+		b = false;
+		System.out.print("Enter state- ");
+		while(!b) {
+		b = contact.setState(in.next());
+		}
+		b = false;
+		System.out.print("Enter zip- ");
+		while(!b) {
+		b = contact.setZip(in.next());
+		}
+		b = false;
+		System.out.print("Enter phone number- ");
+		while(!b) {
+		b = contact.setPhoneNo(in.next());
+		}
+		b = false;
+		System.out.print("Enter email- ");
+		while(!b) {
+		b = contact.setEmail(in.next());
+		}
+		System.out.println("New contact added !");
+	} 
 }
