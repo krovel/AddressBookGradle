@@ -7,34 +7,28 @@ import java.util.*;
 
 public class AddressBookMain {
 	public static void main(String[] args) {
-		AddressBook addressbook = new AddressBook();
+		
+		AddressBookList addressBookList = new AddressBookList();
 		Scanner in = new Scanner(System.in);
 		boolean b = false;
 		System.out.println("Welcome");
-        System.out.println("1. Add contact");
-        System.out.println("2. Edit contact");
-        System.out.println("3. View addressbook details");
-        System.out.println("4. Delete contact");
-        System.out.println("5. Exit");
-        int option = in.nextInt();
-        while(option!= 5) {
-        	if(option == 1)
-        		addressbook.addNewContact();
-        	else if(option == 2) {
-        		addressbook.editContact();
-        	}
-        	else if (option == 3)
-        		addressbook.display();
-        	else if(option == 4)
-        		addressbook.deleteContact();
-        	else if(option == 5)
-        		break;
-        	else{
-        		System.out.println("Error! Enter correct choice-");    
-        	}
-        	System.out.println("Enter choice again (1. Add contact, 2. Edit Contact, 3. View address details, 4. Delete contact, 5. Exit)-");
-        	option = in.nextInt();
-        }
-        System.out.println("Thank You !");
+		System.out.println("1. Open existing addressbook");
+		System.out.println("2. Open new addressbook");
+		System.out.println("3. Exit");
+		int option = in.nextInt();
+		while(option != 3) {
+			if(option == 1)
+				addressBookList.openAddressBook();
+			else if(option == 2)
+				addressBookList.newAddressBook();
+			else if(option == 3)
+				break;
+			else{
+	      		System.out.println("Error! Enter correct choice-");    
+	      	}
+	      	System.out.println("Enter choice again (1. Open existing addressbook, 2. Open new addressbook, 3. Exit)-");
+	      	option = in.nextInt();
+	      }
+		System.out.println("Thank You !");
 	}
 }
