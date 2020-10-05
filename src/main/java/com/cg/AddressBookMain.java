@@ -6,5 +6,6 @@ package com.cg;
 public class AddressBookMain {
 	public static void main(String[] args) {
 		System.out.println("Welcome");
+		Contact contact=new Contact();
     }
 }
