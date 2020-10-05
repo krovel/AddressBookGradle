@@ -114,7 +114,7 @@ public class AddressBook {
 				break;
 			}
 		} else {
-			System.out.println("Error! Name already present.");
+			System.out.println("This name is not present.");
 		}
 	}
 	
@@ -140,7 +140,7 @@ public class AddressBook {
 		if (keyPresent) {
 			contactMap.remove(name);
 		} else {
-			System.out.println("Error! Name already present.");
+			System.out.println("This name is not present.");
 		}
 	}
 }
