@@ -13,6 +13,8 @@ public class Contact {
 	     boolean b = validate.validateFirstName(firstName);
 	    if(b)
 		this.firstName = firstName;
+	    else
+	    	System.out.println("Error! Enter first name again-");
 		return b;
 	}
 
@@ -24,6 +26,8 @@ public class Contact {
 		 boolean b = validate.validateLastName(lastName);
 		    if(b)
 			this.lastName = lastName;
+		    else
+		    	System.out.println("Error! Enter last name again-");
 			return b;
 	}
 
@@ -35,6 +39,8 @@ public class Contact {
 		 boolean b = validate.validateAddress(address);
 		    if(b)
 			this.address = address;
+		    else
+		    	System.out.println("Error! Enter address again-");
 			return b;
 	}
 
@@ -46,6 +52,8 @@ public class Contact {
 		 boolean b = validate.validateCity(city);
 		    if(b)
 			this.city = city;
+		    else
+		    	System.out.println("Error! Enter city again-");
 			return b;
 	}
 
@@ -57,6 +65,8 @@ public class Contact {
 		 boolean b = validate.validateState(state);
 		    if(b)
 			this.state = state;
+		    else
+		    	System.out.println("Error! Enter state again-");
 			return b;
 	}
 
@@ -68,6 +78,8 @@ public class Contact {
 		 boolean b = validate.validateZip(zip);
 		    if(b)
 			this.zip = zip;
+		    else
+		    	System.out.println("Error! Enter zip again-");
 			return b;
 	}
 
@@ -79,6 +91,8 @@ public class Contact {
 		 boolean b = validate.validatePhoneNo(phoneNo);
 		    if(b)
 			this.phoneNo = phoneNo;
+		    else
+		    	System.out.println("Error! Enter phone no again-");
 			return b;
 	}
 
@@ -90,6 +104,8 @@ public class Contact {
 		 boolean b = validate.validateEmail(email);
 		    if(b)
 			this.email = email;
+		    else
+		    	System.out.println("Error! Enter email again-");
 			return b;
 	}
 

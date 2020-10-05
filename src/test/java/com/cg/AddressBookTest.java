@@ -5,9 +5,6 @@ package com.cg;
 
 import org.junit.*;
 
-import com.cg.AddressBookMain;
-
-
 public class AddressBookTest {
 	 @Test
 	    public void firstNameTest() {
@@ -27,7 +24,7 @@ public class AddressBookTest {
 	 @Test
 	    public void phoneNoTest() {
 	        ValidateContact contact = new ValidateContact();
-	        Assert.assertTrue(contact.validatePhoneNo("91 1234567890"));
+	        Assert.assertTrue(contact.validatePhoneNo("1234567890"));
 	 }
 	 @Test
 	    public void addressTest() {
