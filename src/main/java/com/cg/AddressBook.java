@@ -5,7 +5,6 @@ import java.util.*;
 public class AddressBook {
 	Scanner in = new Scanner(System.in);
 	Map<String, Contact> contactMap = new HashMap<>();
-	static Map<String, AddressBook> addressBookList = new HashMap<>();
 	
 	public AddressBook() {
 		contactMap = new HashMap<>();
@@ -66,9 +65,9 @@ public class AddressBook {
 	}
 	
 	public void editContact() {
-		System.out.println("Enter First Name :");
+		System.out.println("Enter first name-");
     	String firstName = in.next();
-    	System.out.println("Enter Last Name :");
+    	System.out.println("Enter last name-");
     	String lastName = in.next();
 		String name = firstName+" "+lastName;
 		boolean b = false;
