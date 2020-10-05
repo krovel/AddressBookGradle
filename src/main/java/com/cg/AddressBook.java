@@ -2,8 +2,11 @@ package com.cg;
 
 import java.util.*;
 
+import java.util.stream.Collectors;
+
 public class AddressBook {
 	Scanner in = new Scanner(System.in);
+	static LinkedList<Contact> contactList = new LinkedList<>();
 	Map<String, Contact> contactMap = new HashMap<>();
 	
 	public AddressBook() {
@@ -61,6 +64,7 @@ public class AddressBook {
 			System.out.println("Error! Name already present.\n");
 		}else {
 		contactMap.put(name, contact);
+		contactList.add(contact);
 		}
 	}
 	
@@ -139,8 +143,17 @@ public class AddressBook {
 		Boolean keyPresent = contactMap.containsKey(name);
 		if (keyPresent) {
 			contactMap.remove(name);
+			Contact c = contactMap.get(name);
+			contactList.remove(c);
 		} else {
 			System.out.println("This name is not present.");
 		}
+	}
+	public List<Contact> searchPersonsByCity(String city) {
+		return contactList.stream().filter(person -> person.getCity().equals(city)).collect(Collectors.toList());
+	}
+
+	public List<Contact> searchPersonsByState(String state) {
+		return contactList.stream().filter(person -> person.getState().equals(state)).collect(Collectors.toList());
 	}
 }
