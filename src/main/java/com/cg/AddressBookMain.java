@@ -32,7 +32,7 @@ public class AddressBookMain {
         	else{
         		System.out.println("Error! Enter correct choice-");    
         	}
-        	System.out.println("Enter choice again (1. Add contact, 2. Edit Contact, 3. View address details, 4. Exit)-");
+        	System.out.println("Enter choice again (1. Add contact, 2. Edit Contact, 3. View address details, 4. Delete contact, 5. Exit)-");
         	option = in.nextInt();
         }
         System.out.println("Thank You !");
