@@ -4,18 +4,12 @@ import java.util.*;
 
 public class AddressBook {
 	Scanner in = new Scanner(System.in);
-	private ArrayList<Contact> contactList = new ArrayList<>();
 	Map<String, Contact> contactMap = new HashMap<>();
-	static Map<String, AddressBook> addressBookList = new TreeMap<>();
+	static Map<String, AddressBook> addressBookList = new HashMap<>();
 	
 	public AddressBook() {
-		contactList = new ArrayList<>();
 		contactMap = new HashMap<>();
 	}
-	public List<Contact> getContactList() {
-		return contactList;
-	}
-
 	public Map<String, Contact> getContactMap() {
 		return contactMap;
 	}
@@ -67,7 +61,6 @@ public class AddressBook {
 		if (keyPresent) {
 			System.out.println("Error! Name already present.\n");
 		}else {
-			contactList.add(contact);
 		contactMap.put(name, contact);
 		}
 	}
@@ -125,18 +118,8 @@ public class AddressBook {
 			System.out.println("Error! Name already present.");
 		}
 	}
-
-	public void display() {
-		if (contactList.size() == 0)
-			System.out.println("No contacts to show");
-			for (int i = 0; i < contactList.size(); i++) {
-				Contact contact = contactList.get(i);
-				System.out.println("\nContact :" + (i + 1));
-				System.out.println(contact);
-			}
-		}
 	
-	public void showDetail() {
+	public void display() {
 		if(contactMap.size() == 0)
 			System.out.println("No contacts to show");
 		else {
@@ -156,8 +139,6 @@ public class AddressBook {
 		String name = firstName+" "+lastName;
 		Boolean keyPresent = contactMap.containsKey(name);
 		if (keyPresent) {
-			Contact c = contactMap.get(name);
-			contactList.remove(c);
 			contactMap.remove(name);
 		} else {
 			System.out.println("Error! Name already present.");
