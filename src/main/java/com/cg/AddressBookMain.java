@@ -10,7 +10,6 @@ public class AddressBookMain {
         AddressBook addressBook = new AddressBook();
 		AddressBookList addressBookList = new AddressBookList();
 		Scanner in = new Scanner(System.in);
-		boolean b = false;
 		System.out.println("Welcome");
 		System.out.println("1. Open existing addressbook");
 		System.out.println("2. Open new addressbook");
@@ -54,6 +53,7 @@ public class AddressBookMain {
 	      			+ "4. Search persons in a state, 5. Count persons in a city, 6. Count persons in a state, 7. Exit)-");
 	      	option = in.nextInt();
 	      }
+		in.close();
 		System.out.println("Thank You !");
 	}
 }

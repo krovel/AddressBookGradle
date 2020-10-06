@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 public class AddressBook {
 	Scanner in = new Scanner(System.in);
 	static LinkedList<Contact> contactList = new LinkedList<>();
-	Map<String, Contact> contactMap = new HashMap<>();
+	Map<String, Contact> contactMap = new TreeMap<>();
 	
 	public AddressBook() {
-		contactMap = new HashMap<>();
+		contactMap = new TreeMap<>();
 	}
 	public Map<String, Contact> getContactMap() {
 		return contactMap;

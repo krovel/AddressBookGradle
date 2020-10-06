@@ -1,6 +1,7 @@
 package com.cg;
 
 public class Contact {
+	
 	private String firstName, lastName, address, city, state, zip, phoneNo, email;
 	
 	ValidateContact validate = new ValidateContact();
@@ -114,5 +115,4 @@ public class Contact {
 		return "First Name :" + firstName + "\nLast Name :" + lastName + "\nAddress :" + address + "\nCity :" + city
 				+ "\nState :" + state + "\nZip :" + zip + "\nPhone No :" + phoneNo + "\nEmail :" + email;
 	}
-
 }
