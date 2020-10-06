@@ -163,4 +163,16 @@ public class AddressBook {
 	public int countPersonsByState(String state) {
 		return contactList.stream().filter(person -> person.getState().equals(state)).collect(Collectors.toList()).size();
 	}
+	
+	public List<Contact> sortPersonsByCity() {
+		return contactList.stream().sorted((n1, n2) -> n1.getCity().compareTo(n2.getCity())).collect(Collectors.toList());
+	}
+	
+	public List<Contact> sortPersonsByState() {
+		return contactList.stream().sorted((n1, n2) -> n1.getState().compareTo(n2.getState())).collect(Collectors.toList());
+	}
+	
+	public List<Contact> sortPersonsByZip() {
+		return contactList.stream().sorted((n1, n2) -> n1.getZip().compareTo(n2.getZip())).collect(Collectors.toList());
+	}
 }
