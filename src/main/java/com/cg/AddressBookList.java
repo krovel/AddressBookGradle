@@ -21,27 +21,27 @@ public class AddressBookList {
 	  boolean keyPresent = addressBookMap.containsKey(bookName);
 	  if(keyPresent) {
 		  AddressBook addressbook = addressBookMap.get(bookName);
-	  System.out.println("1. Add contact");
-      System.out.println("2. Edit contact");
+	  System.out.println("1. Add Contacts");
+      System.out.println("2. Edit Contacts");
       System.out.println("3. View addressbook details");
-      System.out.println("4. Delete contact");
+      System.out.println("4. Delete Contacts");
       System.out.println("5. Exit");
       int option = in.nextInt();
       while(option!= 5) {
     	  if(option == 1)
-    		  addressbook.addNewContact();
+    		  addressbook.addNewContacts();
     	  else if(option == 2) 
-    		  addressbook.editContact();
+    		  addressbook.editContacts();
     	  else if (option == 3)
     		  addressbook.display();
     	  else if(option == 4) 
-    		  addressbook.deleteContact();
+    		  addressbook.deleteContacts();
     	  else if(option == 5)
     		  break;
     	  else{
       		System.out.println("Error! Enter correct choice-");    
       	}
-      	System.out.println("Enter choice again (1. Add contact, 2. Edit Contact, 3. View address details, 4. Delete contact, 5. Exit)-");
+      	System.out.println("Enter choice again (1. Add Contacts, 2. Edit Contacts, 3. View address details, 4. Delete Contacts, 5. Exit)-");
       	option = in.nextInt();
       }
   }
