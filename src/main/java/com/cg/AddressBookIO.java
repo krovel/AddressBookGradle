@@ -1,20 +1,28 @@
 package com.cg;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
-import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.*;
+
 
 public class AddressBookIO {
 
@@ -24,6 +32,8 @@ public class AddressBookIO {
 	public static final String SAMPLE_CSV_FILE_PATH = "./fileread.csv";
 	public static final String SAMPLE_CSV_FILE_PATH2 = "./filewrite.csv";
 
+	public static final String SAMPLE_JSON_FILE_PATH = "./file1.json";
+	public static final String SAMPLE_JSON_FILE_PATH2 = "./file2.json";
 	public List<Contact> readData() {
 		List<Contact> ContactsList = new ArrayList<>();
 		try {
@@ -80,13 +90,13 @@ public class AddressBookIO {
 
 			ContactList = csvToBean.parse();
 			reader.close();
+			return ContactList;
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
-		return ContactList;
 	}
 
 	public boolean writeCSVData(List<Contact> contactList) {
@@ -100,5 +110,35 @@ public class AddressBookIO {
 			return false;
 		}
 		return true;
+	}
+	public boolean writeJsonData(List<Contact> contactList) {
+		Gson gson = new Gson();
+		String json = gson.toJson(contactList);
+		try {
+			FileWriter fileWriter = new FileWriter(SAMPLE_JSON_FILE_PATH);
+			fileWriter.write(json);
+			fileWriter.close();
+			return true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean readJsonFile(){
+		try {
+			Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_JSON_FILE_PATH2));
+			JsonParser jsonParser = new JsonParser();
+			JsonElement obj = jsonParser.parse(reader);
+			JsonArray contactList = (JsonArray) obj;
+			System.out.println(contactList);
+
+			return true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

@@ -7,7 +7,7 @@ import org.junit.*;
 
 
 public class AddressBookIOTest {
-   /*  
+/*
 	@Test
 	public void givenContactInFileShouldRead() {
 		AddressBookIO AddressBookIO = new AddressBookIO();
@@ -28,7 +28,7 @@ public class AddressBookIOTest {
 		AddressBookIO.writeData(contactList);
 		Assert.assertEquals(2, AddressBookIO.countEntries());
 	}
-	*/
+	
 	@Test
 	public void givenContactFromCSVFileShouldRead() {
 		AddressBookIO AddressBookIO = new AddressBookIO();
@@ -49,4 +49,29 @@ public class AddressBookIOTest {
 		boolean b = AddressBookIO.writeCSVData(contactList);
 		Assert.assertTrue(b);
 	}
+	*/
+	@Test
+	public void writeContactToJsonFile() {
+		AddressBookIO AddressBookIO = new AddressBookIO();
+		List<Contact> contactList = new ArrayList<>();
+		Contact contact1 = new Contact("Kashif", "Ansari", "Chowk", "Lko", "UP", "226003", "9598252500", "kashif@gmail.com");
+		Contact contact2 = new Contact("Abdul", "Kalam", "Add", "Allahabad", "UP", "190006", "9876543102", "kalam@gmail.com");
+		contactList.add(contact1);
+		contactList.add(contact2);
+		boolean b = AddressBookIO.writeJsonData(contactList);
+		Assert.assertTrue(b);
+	}
+/*
+	@Test
+	public void readContactFromJsonFile() {
+		AddressBookIO AddressBookIO = new AddressBookIO();
+		List<Contact> contactList = new ArrayList<>();
+		Contact contact1 = new Contact("Kashif", "Ansari", "add", "Lko", "UP", "123456", "7878787878", "kashif@gmail.com");
+		Contact contact2 = new Contact("Abdul", "Qadir", "addr", "Lucknow", "UP", "190006", "9876543210", "kalam@gmail.com");
+		contactList.add(contact1);
+		contactList.add(contact2);
+		boolean b = AddressBookIO.readJsonFile();
+		Assert.assertTrue(b);
+	}
+	*/
 }
