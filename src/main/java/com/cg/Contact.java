@@ -1,7 +1,32 @@
 package com.cg;
 
+import com.opencsv.bean.CsvBindByName;
+
 public class Contact {
-	private String firstName, lastName, name, address, city, state, zip, phoneNo, email;
+	@CsvBindByName
+	private String firstName;
+
+	@CsvBindByName
+	private String lastName;
+
+	@CsvBindByName
+	private String address;
+
+	@CsvBindByName
+	private String city;
+
+	@CsvBindByName
+	private String state;
+
+	@CsvBindByName
+	private String zip;
+
+
+	@CsvBindByName(column = "PhoneNumber")
+	private String phoneNo;
+
+	@CsvBindByName
+	private String email;
 
 	ValidateContact validateContact = new ValidateContact();
 
