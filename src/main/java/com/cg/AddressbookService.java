@@ -2,6 +2,7 @@ package com.cg;
 
 import java.util.List;
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 public class AddressbookService {
 	
@@ -49,11 +50,9 @@ public class AddressbookService {
 		}
 		return null;
 	}
-	/*
-	public int getNumberOfContactsInCity(IOService ioService, String city) {
-		if(ioService.equals(IOService.DB_IO)) {
-			return addressBookDBService.getNumberOfContactsInCity(city);
-		}
-		return 0;
-	}*/
+	public void addContactToAddressBook(IOService ioService,int id, String firstName, String lastName, String address, String string, String string2, int zip, int phone,
+			String email,LocalDate start, String city, String state, String type, String addressBookName) {
+		addressBookList.add(addressBookDBService.addContactToAddressBook(id, firstName, lastName, address, zip, phone,
+				 email, start, city, state, type, addressBookName));
+	}
 }
