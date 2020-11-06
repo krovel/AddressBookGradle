@@ -79,48 +79,65 @@ public class AddressBookDBService {
 		return connection;
 	}
 
-public int updateContactData(String firstName, int phone) {
-	String sql = "update person_details set phone = ? where firstname = ?;";
-	try(Connection connection = this.getConnection()){
-		PreparedStatement prepStatement = connection.prepareStatement(sql);
-		prepStatement.setDouble(1, phone);
-		prepStatement.setString(2, firstName);
-		return prepStatement.executeUpdate();
-	}
-	catch(SQLException e) {
-		e.printStackTrace();
-	}
-	return 0;
-}
-
-public List<Contact> getContactData(String firstName) {
-	List<Contact> addressBookList = null;
-	if(this.addressBookDataStatement == null) {
-		this.prepareStatementForAddressBook();
-	}
-	try {
-		addressBookDataStatement.setString(1,firstName);
-		ResultSet resultSet = addressBookDataStatement.executeQuery();
-		addressBookList = this.getContactData(resultSet);
-	}
-	catch(SQLException e) {
-		e.printStackTrace();
-	}
-	return addressBookList;
-}
-
-private void prepareStatementForAddressBook() {
-	try {
-		Connection connection = this.getConnection();
-		String sql = "Select * from person_details where firstname = ?;";
-		addressBookDataStatement = connection.prepareStatement(sql);
-	}
-	catch(SQLException e) {
-		e.printStackTrace();
+	public int updateContactData(String firstName, int phone) {
+		String sql = "update person_details set phone = ? where firstname = ?;";
+		try(Connection connection = this.getConnection()){
+			PreparedStatement prepStatement = connection.prepareStatement(sql);
+			prepStatement.setDouble(1, phone);
+			prepStatement.setString(2, firstName);
+			return prepStatement.executeUpdate();
 		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
-public List<Contact> getAddressBookForDateRange(LocalDate startDate, LocalDate endDate) {
-	String sql = String.format("select * from person_details where start between '%s' and '%s';", Date.valueOf(startDate),Date.valueOf(endDate));
-	return this.getAddressBookUsingDB(sql);
-}
+
+	public List<Contact> getContactData(String firstName) {
+		List<Contact> addressBookList = null;
+		if(this.addressBookDataStatement == null) {
+			this.prepareStatementForAddressBook();
+		}
+		try {
+			addressBookDataStatement.setString(1,firstName);
+			ResultSet resultSet = addressBookDataStatement.executeQuery();
+			addressBookList = this.getContactData(resultSet);
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return addressBookList;
+	}
+
+	private void prepareStatementForAddressBook() {
+		try {
+			Connection connection = this.getConnection();
+			String sql = "Select * from person_details where firstname = ?;";
+			addressBookDataStatement = connection.prepareStatement(sql);
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			}
+		}
+	
+	public List<Contact> getAddressBookForDateRange(LocalDate startDate, LocalDate endDate) {
+		String sql = String.format("select * from person_details where start between '%s' and '%s';", Date.valueOf(startDate),Date.valueOf(endDate));
+		return this.getAddressBookUsingDB(sql);
+	}
+
+	public int getNumberOfContactsInCity(String col, String name) throws AddressBookDBException {
+		// TODO Auto-generated method stub
+		String sql = String.format("select person_id from person_details where %s = '%s';", col, name);
+		int n = 0;
+		try (Connection connection = getConnection()) {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+				n++;
+			}
+		} catch (SQLException e) {
+			throw new AddressBookDBException(AddressBookDBException.ExceptionType.CONNECTION_ERROR, e.getMessage());
+		}
+		return n;
+	}	
 }

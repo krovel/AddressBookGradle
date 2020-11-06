@@ -30,4 +30,11 @@ public class AddressBookDBTest {
 		List<Contact> addressBookData = addressBookService.readAddressBookForDateRange(IOService.DB_IO, startDate, endDate);
 		Assert.assertEquals(4, addressBookData.size());
 	}
+
+	@Test
+	public void givenAddressBookDB_WhenRetrivedBasedOnCity_ShouldReturnCount() throws AddressBookDBException {
+		AddressBookDBService addressBookService = new AddressBookDBService();
+		int n = addressBookService.getNumberOfContactsInCity("city","Lucknow");
+		Assert.assertEquals(1, n);
+	}
 }
