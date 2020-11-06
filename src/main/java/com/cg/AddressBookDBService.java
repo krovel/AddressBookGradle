@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -117,4 +119,8 @@ private void prepareStatementForAddressBook() {
 		e.printStackTrace();
 		}
 	}
+public List<Contact> getAddressBookForDateRange(LocalDate startDate, LocalDate endDate) {
+	String sql = String.format("select * from person_details where start between '%s' and '%s';", Date.valueOf(startDate),Date.valueOf(endDate));
+	return this.getAddressBookUsingDB(sql);
+}
 }
