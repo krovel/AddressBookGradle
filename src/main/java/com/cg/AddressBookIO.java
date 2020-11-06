@@ -1,6 +1,7 @@
 package com.cg;
 
 import java.io.File;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
@@ -8,10 +9,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.StreamSupport;
-
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -80,7 +78,6 @@ public class AddressBookIO {
 		}
 		return entries;
 	}
-	@SuppressWarnings("unchecked")
 	public List<Contact> readCSVData() {
 		List<Contact> ContactList = new ArrayList<>();
 		try {

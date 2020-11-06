@@ -2,8 +2,6 @@ package com.cg;
 
 import java.util.*;
 
-import java.util.stream.Collectors;
-
 public class AddressBookList {
 	Scanner in = new Scanner(System.in);
 	Map<String, AddressBook> addressBookMap = new TreeMap<>();
