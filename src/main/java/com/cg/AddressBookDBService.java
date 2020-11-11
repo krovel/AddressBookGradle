@@ -1,6 +1,10 @@
 package com.cg;
 
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +13,6 @@ import java.time.LocalDate;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AddressBookDBService {
 
@@ -62,7 +65,7 @@ public class AddressBookDBService {
 		return addressBookList;
 	}
 
-	private Connection getConnection() {
+	private synchronized Connection getConnection() {
 		String jdbcURL = "jdbc:mysql://localhost:3306/addressbook_service";
 		String userName = "root";
 		String password = "Matrixkashif@1";

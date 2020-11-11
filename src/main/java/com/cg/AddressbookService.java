@@ -1,6 +1,8 @@
 package com.cg;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
@@ -54,5 +56,34 @@ public class AddressbookService {
 			String email,LocalDate start, String city, String state, String type, String addressBookName) {
 		addressBookList.add(addressBookDBService.addContactToAddressBook(id, firstName, lastName, address, zip, phone,
 				 email, start, city, state, type, addressBookName));
+	}
+	
+	public Object countEntries(IOService dbIo) {
+		return addressBookList.size();
+	}
+
+	public void addContactsToAddressBookWithThreads(List<Contact> addressBList) {
+		Map<Integer,Boolean> contactAdditionStatus = new HashMap<Integer,Boolean>();
+		addressBList.forEach(contact->{
+			Runnable task = () ->{
+				contactAdditionStatus.put(contact.hashCode(), false);
+				System.out.println("Contact Being Added: "+ Thread.currentThread().getName());
+				this.addContactToAddressBook(IOService.DB_IO, contact.getId(), contact.getFirstName(), contact.getLastName(), 
+										 contact.getAddress(), null, null, Integer.parseInt(contact.getZip()), Integer.parseInt(contact.getPhoneNo()), 
+										 contact.getEmail(), contact.getDateAdded(), contact.getCity(), contact.getState(), contact.getType(), contact.getBookName());
+				contactAdditionStatus.put(contact.hashCode(), true);
+				System.out.println("Employee Added "+Thread.currentThread().getName());
+			};
+			Thread thread = new Thread(task, contact.getFirstName());
+			thread.start();
+		});
+		while (contactAdditionStatus.containsValue(false)) {
+			try {
+				Thread.sleep(10);
+			}
+			catch (InterruptedException e) {
+
+			}
+		}
 	}
 }
