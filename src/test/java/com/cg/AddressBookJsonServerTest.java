@@ -63,5 +63,29 @@ public class AddressBookJsonServerTest {
 		long entries = addressBookDataService.countEntries(IOService.REST_IO);
 		Assert.assertEquals(2, entries);
 	}
+	@Test
+	public void givenMultipleContacts_WhenAdded_ShouldMatch201ResponseCount() {
+		Contact[] arrContacts = getContactList();
+		AddressbookService addressBookDataService;
+		addressBookDataService = new AddressbookService(Arrays.asList(arrContacts));
 
+		Contact[] arrayOfContacts = {
+				new Contact(0,"Raunak","MK", "Anand Vihar","Lko","Uttar Pradesh","456555","9030303","jdksj@gmail.com"),
+				new Contact(0, "Vimal","G","RS Colony","Guntur","Andhra Pradesh","408223","49949943","sjksjda@gmail.com"),
+				new Contact(0, "Paras", "M","New town","Vadodra","Gujarat","509001","3888393","dkakjsj@gmail.com"),
+		};
+
+		for(Contact contact :arrayOfContacts) {
+			Response response = addContactToJsonServer(contact);
+			int statusCode = response.getStatusCode();
+			Assert.assertEquals(201, statusCode);
+
+			contact = new Gson().fromJson(response.asString(), Contact.class);
+			addressBookDataService.addContactToAddressBook(contact, IOService.REST_IO);
+		}
+
+		long entries = addressBookDataService.countEntries(IOService.REST_IO);
+		Assert.assertEquals(5, entries);
+	}
+	
 }

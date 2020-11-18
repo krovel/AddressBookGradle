@@ -3,6 +3,7 @@ package com.cg;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ public class AddressbookService {
 
 	public AddressbookService(List<Contact> addressBookList) {
 		this();
-		this.addressBookList = addressBookList;
+		this.addressBookList = new ArrayList<>(addressBookList);;
 	}
 	
 	public List<Contact> readAddressBookData(IOService ioService) {
@@ -77,7 +78,7 @@ public class AddressbookService {
 										 contact.getAddress(), null, null, Integer.parseInt(contact.getZip()), Integer.parseInt(contact.getPhoneNo()), 
 										 contact.getEmail(), contact.getDateAdded(), contact.getCity(), contact.getState(), contact.getType(), contact.getBookName());
 				contactAdditionStatus.put(contact.hashCode(), true);
-				System.out.println("Employee Added "+Thread.currentThread().getName());
+				System.out.println("Contact Added "+Thread.currentThread().getName());
 			};
 			Thread thread = new Thread(task, contact.getFirstName());
 			thread.start();
