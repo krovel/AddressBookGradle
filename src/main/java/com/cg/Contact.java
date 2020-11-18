@@ -54,8 +54,7 @@ public class Contact {
 		this.setEmail(email);
 	}
 	
-	public Contact(int id, String firstName, String lastName, String address, String city, String state, String zip, LocalDate dateAdded,
-			String phoneNo, String email, String type, String bookName) {
+	public Contact(int id, String firstName, String lastName, String address, String city, String state, String zip, String phoneNo, String email) {
 		this(firstName, lastName, address,city,state, zip, phoneNo, email);
 		this.setId(id);
 		this.setDateAdded(dateAdded);
