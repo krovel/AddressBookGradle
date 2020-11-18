@@ -101,4 +101,11 @@ public class AddressbookService {
 	public void addContactToAddressBook(Contact contact, IOService ioService) {
 		addressBookList.add(contact);
 	}
+	
+	public void deleteContact(String firstName, IOService iosService) {
+		if(iosService.equals(IOService.REST_IO)) {
+			Contact contact = this.getAddressBookData(firstName);
+			addressBookList.remove(contact);
+		}
+	}
 }

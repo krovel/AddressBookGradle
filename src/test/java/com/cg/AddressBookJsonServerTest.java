@@ -63,6 +63,7 @@ public class AddressBookJsonServerTest {
 		long entries = addressBookDataService.countEntries(IOService.REST_IO);
 		Assert.assertEquals(2, entries);
 	}
+	//UC23
 	@Test
 	public void givenMultipleContacts_WhenAdded_ShouldMatch201ResponseCount() {
 		Contact[] arrContacts = getContactList();
@@ -87,6 +88,7 @@ public class AddressBookJsonServerTest {
 		long entries = addressBookDataService.countEntries(IOService.REST_IO);
 		Assert.assertEquals(5, entries);
 	}
+	//UC24
 	@Test 
 	public void givenNewPhoneNumberForContact_WhenUpdated_ShouldMatch200Response() {
 		AddressbookService addressBookDataService;
@@ -104,6 +106,23 @@ public class AddressBookJsonServerTest {
 		Response response = request.put("/addressbook_service/"+contact.getId());
 		int statusCode = response.getStatusCode();
 		Assert.assertEquals(200, statusCode);
+	}
+	@Test 
+	public void givenContactToDelete_WhenDeleted_ShouldMatch200ResponseAndCount() {
+		AddressbookService addressBookDataService;
+		Contact[] arrayOfContacts = getContactList();
+		addressBookDataService = new AddressbookService(Arrays.asList(arrayOfContacts));
+		
+		Contact contact = addressBookDataService.getAddressBookData("Anil");
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type","application/json");
+		Response response = request.delete("/addressbook_service/"+contact.getId());
+		int statusCode = response.getStatusCode();
+		Assert.assertEquals(200, statusCode);
+		
+		addressBookDataService.deleteContact(contact.getFirstName(),IOService.REST_IO);
+		long entries = addressBookDataService.countEntries(IOService.REST_IO);
+		Assert.assertEquals(4, entries);
 	}
 	
 }
