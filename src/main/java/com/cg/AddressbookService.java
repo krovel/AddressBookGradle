@@ -16,6 +16,11 @@ public class AddressbookService {
 		addressBookDBService = AddressBookDBService.getInstance();
 	}
 
+	public AddressbookService(List<Contact> addressBookList) {
+		this();
+		this.addressBookList = addressBookList;
+	}
+	
 	public List<Contact> readAddressBookData(IOService ioService) {
 		if(ioService.equals(IOService.DB_IO)) {
 			this.addressBookList = addressBookDBService.readContacts();
@@ -58,7 +63,7 @@ public class AddressbookService {
 				 email, start, city, state, type, addressBookName));
 	}
 	
-	public Object countEntries(IOService dbIo) {
+	public long countEntries(IOService iosService) {
 		return addressBookList.size();
 	}
 
@@ -85,5 +90,8 @@ public class AddressbookService {
 
 			}
 		}
+	}
+	public void addContactToAddressBook(Contact contact, IOService ioService) {
+		addressBookList.add(contact);
 	}
 }
